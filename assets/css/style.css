@@ -295,7 +295,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-of
 /* ---------- gallery ---------- */
 .masonry{columns:3;column-gap:16px}
 .masonry a{display:block;margin:0 0 16px;break-inside:avoid;position:relative;overflow:hidden;background:var(--teal)}
-.masonry img{width:100%;transition:transform .7s ease,opacity .3s}
+.masonry img{display:block;width:100%;height:auto;transition:transform .7s ease,opacity .3s}
 .masonry a:hover img{transform:scale(1.03)}
 .lb{position:fixed;inset:0;z-index:80;background:rgba(6,28,33,.94);display:none;align-items:center;justify-content:center;padding:30px}
 .lb.open{display:flex}
