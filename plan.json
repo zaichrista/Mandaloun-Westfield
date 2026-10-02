@@ -1,0 +1,19 @@
+{
+  "forms": [
+    {
+      "name": "Private event enquiry",
+      "submitText": "Send enquiry",
+      "thankYou": "Thank you. We have your enquiry and will be in touch shortly. You can also call us on 020 8749 8845.",
+      "fields": [
+        { "label": "Your name", "kind": "text", "required": true },
+        { "label": "Email", "kind": "email", "required": true },
+        { "label": "Phone", "kind": "phone", "country": "GB" },
+        { "label": "Type of event", "kind": "select", "choices": ["Birthday", "Family gathering", "Company dinner", "Celebration", "Catering", "Bar service", "Other"] },
+        { "label": "Preferred date", "kind": "date" },
+        { "label": "Number of guests", "kind": "number", "min": 1, "max": 130, "step": 1 },
+        { "label": "Budget per head (optional)", "kind": "text" },
+        { "label": "Tell us about the day", "kind": "textarea" }
+      ]
+    }
+  ]
+}

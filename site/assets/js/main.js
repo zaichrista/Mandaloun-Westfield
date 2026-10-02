@@ -3,7 +3,6 @@
 /* ONE place to change the booking link. Every "Book" button reads from here.
    Two different Dojo links were found on the old site; this is the header one. */
 var BOOKING_URL = "https://web.dojo.app/create_booking/vendor/0HSyx1O_nE6_-fPqnXEsXcmnsAeGzyNK24ZdcB6G1CI_restaurant";
-var EVENTS_EMAIL = "info@mandaloun.com";
 
 (function () {
   "use strict";
@@ -104,18 +103,4 @@ var EVENTS_EMAIL = "info@mandaloun.com";
     document.addEventListener("keydown", function (e) { if (!lb.classList.contains("open")) return; if (e.key === "Escape") close(); if (e.key === "ArrowLeft") open(cur - 1); if (e.key === "ArrowRight") open(cur + 1); });
   }
 
-  /* enquiry form: builds an email to the restaurant (no backend needed) */
-  var form = $("#enquiry");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var v = function (n) { return (form.elements[n] && form.elements[n].value || "").trim(); };
-      var body = [
-        "Name: " + v("name"), "Email: " + v("email"), "Phone: " + v("phone"),
-        "Type of event: " + v("type"), "Preferred date: " + v("date"), "Number of guests: " + v("guests"),
-        "Budget: " + v("budget"), "", v("message")
-      ].join("\n");
-      window.location.href = "mailto:" + EVENTS_EMAIL + "?subject=" + encodeURIComponent("Private event enquiry: " + (v("type") || "Mandaloun Westfield")) + "&body=" + encodeURIComponent(body);
-    });
-  }
 })();

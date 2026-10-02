@@ -75,17 +75,7 @@
   <div class="wrap" style="max-width:960px">
     <div class="center" style="margin-bottom:36px"><p class="eyebrow">Enquiries</p><h2 class="big">Plan your <em>event</em></h2></div>
     <div class="formbox">
-      <form id="enquiry" class="formgrid">
-        <div><label for="name">Your name</label><input id="name" name="name" required autocomplete="name"></div>
-        <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
-        <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-        <div><label for="type">Type of event</label><select id="type" name="type"><option>Birthday</option><option>Family gathering</option><option>Company dinner</option><option>Celebration</option><option>Catering</option><option>Bar service</option><option>Other</option></select></div>
-        <div><label for="date">Preferred date</label><input id="date" name="date" type="date"></div>
-        <div><label for="guests">Number of guests</label><input id="guests" name="guests" type="number" min="1" max="130" inputmode="numeric"></div>
-        <div class="full"><label for="budget">Budget per head (optional)</label><input id="budget" name="budget"></div>
-        <div class="full"><label for="message">Tell us about the day</label><textarea id="message" name="message"></textarea></div>
-        <div class="full center"><button class="btn gold" type="submit">Send enquiry</button><p class="formnote">This opens your email app with your details ready to send to info@mandaloun.com. You can also call us on <a href="tel:+442087498845">020 8749 8845</a>.</p></div>
-      </form>
+      <form id="enquiry" class="formgrid" novalidate aria-live="polite"><p class="formnote full">Loading the enquiry form… If it does not appear, call us on <a href="tel:+442087498845">020 8749 8845</a>.</p></form>
     </div>
   </div>
 </section>
@@ -120,5 +110,6 @@
   </div>
 </footer>
 <script src="assets/js/main.js" defer></script>
+<script type="module" src="assets/js/enquiry.js"></script>
 </body>
 </html>
