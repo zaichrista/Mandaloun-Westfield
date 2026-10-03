@@ -442,3 +442,10 @@ html.leaving body{opacity:0;transition:opacity .45s cubic-bezier(.4,0,.2,1);anim
 .rv.in{opacity:1;transform:none;will-change:auto}
 .rv:not(.in){will-change:opacity,transform}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+.hlink{color:inherit;text-decoration:none;transition:color .25s}
+.hlink:hover,.hlink:focus-visible{color:var(--gold-deep)}
+.hlink:hover em,.hlink:focus-visible em{color:inherit}
+
+/* menu banners: a light wash over the pattern so the text sits clear of it */
+.menu-hero .txt::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.14);z-index:0}
+.menu-hero .txt>*:not(.frame){position:relative;z-index:1}
