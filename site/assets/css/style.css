@@ -366,6 +366,65 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-of
   .lb .pv,.lb .nx{top:auto;bottom:70px}
   .lb .cap{bottom:16px;font-size:18px}
   .story .box{padding:70px 26px}
+  :root{--gut:32px}
+  body{line-height:1.65}
+  .pad{padding:88px 0}
+  .page-hero{padding:64px 0 48px}
+  .menus-wrap{padding-top:36px;gap:36px}
+  .menu-hero{margin-bottom:44px}
+  .menu-hero .txt{padding:48px 32px}
+  .msec{margin-bottom:64px}
+  .dishes{gap:18px}
+  .dish{padding:28px 26px 26px}
+  .dish h3{margin-bottom:10px}
+  .dish .d{margin-bottom:14px}
+  .dishes.compact .dish{padding:22px}
+  .legend{padding:22px 26px}
+  .trio,.quotes,.pkgs{gap:30px}
+  .steps{gap:40px}
+  .tile .cap{padding:30px 28px}
+  .quote{padding:0}
+  .pkg .in{padding:34px 30px 38px}
+  .formbox{padding:36px 28px}
+  .formgrid{gap:22px}
+  .split .copy{padding:56px 32px}
+  .foot-grid{gap:44px}
+  .discover,.visit{gap:44px}
+  .masonry a{margin-bottom:18px}
+  .mpanel nav a{padding:12px 0}
+  .reserve .panel{gap:16px;padding:22px 24px}
+  .hero-inner{padding-left:40px;padding-right:40px}
+  /* scale type and controls down a notch */
+  body{font-size:16px}
+  .btn{margin:9px 8px;padding:15px 26px;font-size:12px;letter-spacing:.24em}
+  .btn.sm{padding:11px 18px}
+  .lead{font-size:17px}
+  .eyebrow{font-size:11.5px;letter-spacing:.24em}
+  .hero h1{font-size:clamp(38px,11vw,50px)}
+  .hero .sub{font-size:16.5px}
+  .page-hero h1{font-size:clamp(38px,11vw,52px)}
+  h2.big,.discover h2,.split .copy h2,.visit h2,.prose h2{font-size:clamp(32px,9vw,40px)}
+  .story h2{font-size:clamp(34px,9.5vw,44px)}
+  .story p{font-size:17.5px}
+  .pull{font-size:clamp(25px,7vw,32px)}
+  .menu-hero .txt h2{font-size:36px}
+  .menu-nav h2{font-size:26px}
+  .menu-nav li a{font-size:18px;padding:7px 14px}
+  .slide h3{font-size:25px}
+  .tile h3{font-size:32px}
+  .pkg h3{font-size:28px}
+  .step h3{font-size:25px}
+  .dish h3{font-size:21px}
+  .dish .d{font-size:15px}
+  .dish .p{font-size:20px}
+  .quote q{font-size:23px}
+  .price-tag{font-size:25px}
+  .figure b{font-size:clamp(46px,14vw,60px)}
+  .band-rule span{font-size:12px;letter-spacing:.26em}
+  .reserve .tab{font-size:18px;padding:11px 22px}
+  .reserve .panel strong{font-size:21px}
+  .mpanel nav a{font-size:30px}
+  .mpanel .mbtns{gap:18px}
 }
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media (min-width:1101px){.mpanel{display:none}}
