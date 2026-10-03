@@ -69,7 +69,11 @@ var BOOKING_URL = "https://restaurant-1790935816.resos.com/booking";
     });
   });
   /* header scroll state */
-  var onScroll = function () { document.body.classList.toggle("scrolled", window.scrollY > 40); };
+  var heroEl = $(".hero");
+  var onScroll = function () {
+    document.body.classList.toggle("scrolled", window.scrollY > 40);
+    document.body.classList.toggle("past-hero", !heroEl || window.scrollY > heroEl.offsetHeight - 90);
+  };
   onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
 
   /* mobile panel */
