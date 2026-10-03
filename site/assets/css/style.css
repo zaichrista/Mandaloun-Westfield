@@ -438,3 +438,7 @@ body{animation:pagein 1s cubic-bezier(.22,1,.36,1) both}
 html{background:var(--cream)}
 html.leaving body{opacity:0;transition:opacity .45s cubic-bezier(.4,0,.2,1);animation:none}
 @media (prefers-reduced-motion:reduce){body{animation:none}}
+.rv{opacity:0;transform:translateY(30px);transition:opacity 1.2s cubic-bezier(.22,1,.36,1) var(--d,0s),transform 1.2s cubic-bezier(.22,1,.36,1) var(--d,0s)}
+.rv.in{opacity:1;transform:none;will-change:auto}
+.rv:not(.in){will-change:opacity,transform}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
