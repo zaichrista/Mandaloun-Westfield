@@ -40,34 +40,6 @@ var BOOKING_URL = "https://restaurant-1790935816.resos.com/booking";
     });
   });
 
-  /* mouse-wheel scrolling: slower, with a soft glide to rest (trackpads and touch stay native) */
-  if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    var wTarget = 0, wCur = 0, wRaf = null, wLast = 0;
-    var wStep = function (t) {
-      /* time-based easing so it feels the same at 60, 120 or 144Hz */
-      var dt = Math.min(48, t - wLast || 16); wLast = t;
-      wCur += (wTarget - wCur) * (1 - Math.exp(-dt / 120));
-      if (Math.abs(wTarget - wCur) < 0.4) { wCur = wTarget; window.scrollTo(0, Math.round(wCur)); wRaf = null; return; }
-      window.scrollTo(0, Math.round(wCur));
-      wRaf = requestAnimationFrame(wStep);
-    };
-    window.addEventListener("wheel", function (e) {
-      if (e.ctrlKey || e.defaultPrevented || document.body.style.overflow === "hidden") return;
-      var dy = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
-      if (e.deltaMode === 0 && Math.abs(dy) < 40) return; /* trackpad: already smooth */
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      for (var n = e.target; n && n !== document.body; n = n.parentElement) {
-        var oy = getComputedStyle(n).overflowY;
-        if ((oy === "auto" || oy === "scroll") && n.scrollHeight > n.clientHeight) return;
-      }
-      e.preventDefault();
-      if (!wRaf) { wCur = window.scrollY; wTarget = wCur; }
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      wTarget = Math.max(0, Math.min(max, wTarget + dy * 0.55));
-      if (!wRaf) { wLast = performance.now(); wRaf = requestAnimationFrame(wStep); }
-    }, { passive: false });
-  }
-
   /* gentle reveal as sections arrive */
   if ("IntersectionObserver" in window) {
     var rvSel = ".page-hero .wrap>*,.band-rule,.discover .left,.discover .right,.split .copy,.split .media,.story .box,.tile,.quote,.pkg,.step,.figure,.visit>*,.prose>*,.formbox,.menu-hero,.msec .dishes,.legend,.foot-grid>*";
