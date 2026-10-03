@@ -2,7 +2,7 @@
 
 /* ONE place to change the booking link. Every "Book" button reads from here.
    Two different Dojo links were found on the old site; this is the header one. */
-var BOOKING_URL = "https://web.dojo.app/create_booking/vendor/0HSyx1O_nE6_-fPqnXEsXcmnsAeGzyNK24ZdcB6G1CI_restaurant";
+var BOOKING_URL = "https://restaurant-1790935816.resos.com/booking";
 
 (function () {
   "use strict";
@@ -12,6 +12,47 @@ var BOOKING_URL = "https://web.dojo.app/create_booking/vendor/0HSyx1O_nE6_-fPqnX
   /* booking links */
   $$("[data-book]").forEach(function (a) { a.href = BOOKING_URL; a.target = "_blank"; a.rel = "noopener"; });
 
+
+  /* slow, eased scrolling for in-page links and programmatic jumps */
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var glide = function (top, ms) {
+    var from = window.scrollY, dist = top - from, t0 = null;
+    if (reduceMotion || Math.abs(dist) < 2) { window.scrollTo(0, top); return; }
+    ms = ms || Math.min(1800, Math.max(900, Math.abs(dist) * 0.9));
+    var ease = function (p) { return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; };
+    var step = function (t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / ms);
+      window.scrollTo(0, from + dist * ease(p));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  $$('a[href^="#"]').forEach(function (a) {
+    var id = a.getAttribute("href").slice(1);
+    if (!id || a.hasAttribute("data-menu")) return;
+    a.addEventListener("click", function (e) {
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      glide(target.getBoundingClientRect().top + window.scrollY - 90);
+      history.replaceState(null, "", "#" + id);
+    });
+  });
+
+  /* page transitions: gentle fade out before leaving */
+  window.addEventListener("pageshow", function () { document.documentElement.classList.remove("leaving"); });
+  $$("a[href]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var h = a.getAttribute("href");
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || a.target === "_blank") return;
+      if (!h || h.charAt(0) === "#" || /^(mailto:|tel:|https?:|\/\/)/i.test(h) || a.hasAttribute("download")) return;
+      if (a.pathname === location.pathname && a.hash) return;
+      e.preventDefault();
+      document.documentElement.classList.add("leaving");
+      setTimeout(function () { location.href = a.href; }, reduceMotion ? 0 : 450);
+    });
+  });
   /* header scroll state */
   var onScroll = function () { document.body.classList.toggle("scrolled", window.scrollY > 40); };
   onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
@@ -19,8 +60,9 @@ var BOOKING_URL = "https://web.dojo.app/create_booking/vendor/0HSyx1O_nE6_-fPqnX
   /* mobile panel */
   var panel = $("#mpanel"), burger = $(".burger");
   if (panel && burger) {
-    burger.addEventListener("click", function () { panel.classList.add("open"); burger.setAttribute("aria-expanded", "true"); document.body.style.overflow = "hidden"; });
-    var closeP = function () { panel.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); document.body.style.overflow = ""; };
+    var setP = function (on) { panel.classList.toggle("open", on); document.body.classList.toggle("menu-open", on); burger.setAttribute("aria-expanded", on ? "true" : "false"); burger.setAttribute("aria-label", on ? "Close menu" : "Open menu"); document.body.style.overflow = on ? "hidden" : ""; };
+    var closeP = function () { setP(false); };
+    burger.addEventListener("click", function () { setP(!panel.classList.contains("open")); });
     $(".close", panel).addEventListener("click", closeP);
     $$("a", panel).forEach(function (a) { a.addEventListener("click", closeP); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeP(); });
@@ -81,7 +123,7 @@ var BOOKING_URL = "https://web.dojo.app/create_booking/vendor/0HSyx1O_nE6_-fPqnX
       panes.forEach(function (p) { var on = p.id === "menu-" + id; p.classList.toggle("on", on); if (on) found = true; });
       if (!found) { id = links[0].getAttribute("data-menu"); panes.forEach(function (p) { p.classList.toggle("on", p.id === "menu-" + id); }); }
       links.forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("data-menu") === id ? "true" : "false"); });
-      if (push) { history.replaceState(null, "", "#" + id); var t = $(".menus-wrap"); if (t && window.innerWidth < 1100) window.scrollTo({ top: t.offsetTop - 70, behavior: "smooth" }); }
+      if (push) { history.replaceState(null, "", "#" + id); var t = $(".menus-wrap"); if (t && window.innerWidth < 1100) glide(t.offsetTop - 70); }
     };
     links.forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); activate(a.getAttribute("data-menu"), true); }); });
     activate((location.hash || "").replace("#", "") || links[0].getAttribute("data-menu"), false);
