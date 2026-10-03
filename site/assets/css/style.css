@@ -123,7 +123,7 @@ body.on-hero{padding-top:0}
 .hero h1 em{color:var(--gold-light)}
 .hero .sub{font-size:clamp(17px,1.6vw,21px);max-width:620px;margin:0 auto 34px;color:rgba(246,239,226,.95)}
 .hero .eyebrow{color:var(--gold-light)}
-.reserve{position:absolute;z-index:4;left:50%;transform:translateX(-50%);bottom:34px;width:min(1180px,calc(100% - 2*var(--gut)))}
+.reserve{position:absolute;z-index:4;left:50%;transform:translateX(-50%);bottom:64px;width:min(1180px,calc(100% - 2*var(--gut)))}
 .reserve .tabs{display:flex}
 .reserve .tab{font-family:var(--serif);font-size:20px;padding:12px 28px;background:rgba(8,42,49,.92);color:var(--cream);border:0;cursor:pointer}
 .reserve .tab[aria-selected=true]{background:var(--paper);color:var(--teal);font-style:italic}
@@ -350,7 +350,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-of
   body{font-size:16.5px}
   .hero-inner{padding:130px var(--gut) 290px}
   .hero .frame{inset:76px 8px 8px 8px;border-width:24px}
-  .reserve{bottom:24px;width:calc(100% - 28px)}
+  .reserve{bottom:44px;width:calc(100% - 2*var(--gut))}
   .reserve .panel{flex-direction:column;align-items:stretch;text-align:center;padding:16px}
   .reserve .panel .info{justify-content:center;gap:4px 20px;flex-direction:column}
   .trio,.quotes,.pkgs,.steps,.figures{grid-template-columns:1fr}
@@ -392,7 +392,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-of
   .discover,.visit{gap:44px}
   .masonry a{margin-bottom:18px}
   .mpanel nav a{padding:12px 0}
-  .reserve .panel{gap:16px;padding:22px 24px}
+  .reserve .panel{gap:10px;padding:14px 16px}
   .hero-inner{padding-left:40px;padding-right:40px}
   /* scale type and controls down a notch */
   body{font-size:16px}
@@ -421,8 +421,10 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-of
   .price-tag{font-size:25px}
   .figure b{font-size:clamp(46px,14vw,60px)}
   .band-rule span{font-size:12px;letter-spacing:.26em}
-  .reserve .tab{font-size:18px;padding:11px 22px}
-  .reserve .panel strong{font-size:21px}
+  .reserve .tab{font-size:16px;padding:9px 16px}
+  .reserve .panel strong{font-size:18px}
+  .reserve .panel span.s,.reserve .openpill{font-size:13px}
+  .reserve .panel .btn{margin:2px 0;padding:12px 20px;font-size:11px}
   .mpanel nav a{font-size:30px}
   .mpanel .mbtns{gap:18px}
 }
